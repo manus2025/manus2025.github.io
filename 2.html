@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manus AI - 智能代理领航者</title>
+    <meta name="description" content="Manus AI在GAIA基准测试中取得SOTA成绩，提供从人力资源到金融分析的智能解决方案，重新定义AI Agent的能力边界。">
+      <style>
+        /* 基础重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 色彩系统 */
+        :root {
+            --primary: #38b2ac;
+            --secondary: #4299e1;
+            --accent: #48bb78;
+            --light: #f7fafc;
+            --dark: #1a202c;
+        }
+
+        body {
+            font-family: 'HarmonyOS Sans SC', 'Microsoft Yahei', sans-serif;
+            line-height: 1.6;
+            background: var(--light);
+        }
+
+        /* 导航栏 */
+        .navbar {
+            padding: 1rem 2rem;
+            background: rgba(255,255,255,0.98);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--dark);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        /* 主视觉区 */
+        .hero {
+            margin-top: 6rem;
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            text-align: center;
+            color: white;
+            clip-path: ellipse(130% 100% at 50% 0%);
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            margin-bottom: 2.5rem;
+        }
+
+        /* 下载按钮 */
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1.2rem 3rem;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 2.5rem;
+            color: white;
+            text-decoration: none;
+            border: 2px solid rgba(255,255,255,0.25);
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .download-btn:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* 功能卡片 */
+        .features {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1.2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            border-left: 4px solid var(--primary);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+            
+            .hero {
+                padding: 4rem 1rem;
+                margin-top: 4rem;
+                clip-path: ellipse(160% 100% at 50% 0%);
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .download-btn {
+                padding: 1rem 2rem;
+                font-size: 0.95rem;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+/* 新增分栏样式 */
+.feature-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    margin-top: 4rem;
+}
+
+.screenshot-wrapper {
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.screenshot-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.feature-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.feature-item {
+    display: flex;
+    align-items: start;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: rgba(255,255,255,0.9);
+    border-radius: 0.8rem;
+    transition: all 0.3s;
+    border-left: 4px solid var(--primary);
+}
+
+.feature-item:hover {
+    transform: translateX(10px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.feature-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--primary);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .feature-columns {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .screenshot-wrapper {
+        max-width: 80%;
+        margin: 0 auto;
+    }
+}
+   /* 新增下载区块样式 */
+        .download-section {
+            background: linear-gradient(135deg, #38b2ac 0%, #4299e1 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 4rem auto;
+            max-width: 1200px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .download-content {
+            color: white;
+        }
+
+        .download-heading {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .download-stats {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            min-width: 120px;
+        }
+
+        .download-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem 3rem;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50px;
+            color: #38b2ac;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .download-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            background: white;
+        }
+
+        .download-illustration {
+            position: relative;
+            text-align: center;
+        }
+
+        .download-illustration img {
+            width: 100%;
+            max-width: 400px;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .download-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .download-stats {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="logo">Manus AI</div>
+        <div class="nav-links">
+            <a href="#features" class="nav-link">功能展示</a>
+            <a href="https://pan.quark.cn/s/07c99b131837" class="nav-link">Manus资料下载</a>
+                  </div>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <h1>Manus AI - 全球首款通用型AI Agent，重新定义AI Agent能力边界</h1>
+    <p>GAIA基准测试SOTA成绩保持者——真正实现‘手脑协同’的自主智能体领航者，以全网刷屏的爆款姿态，首个完成从意图理解到任务执行的全流程闭环。</p>
+        <p>当前状态：内测阶段</p>
+        <a href="#contact" class="download-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokess-width="2">
+                <path d="M12 2v16m0 0l4-4m-4 4l-4-4m6 8H6"/>
+            </svg>
+            Manus全网最全资料（持续更新中...）
+        </a>
+    </section>
+
+    <!-- 核心功能 -->
+    <section class="features" id="features">
+        <h2>核心应用场景</h2>
+        <div class="feature-grid">
+            <!-- 智能HR助手 -->
+            <div class="feature-card">
+                <div class="feature-icon">📑</div>
+                <h3>智能HR助手</h3>
+                <p>批量解析简历文件，自动生成候选人评估报告，支持异步处理和多维度排名</p>
+            </div>
+
+            <!-- 股票分析专家 -->
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>股票分析专家</h3>
+                <p>实时获取金融数据，自动生成可视化报告，支持定制化网站部署</p>
+            </div>
+
+            <!-- 其他8个功能区块（示例结构） -->
+            <div class="feature-card">
+                <div class="feature-icon">🧾</div>
+                <h3>票据处理专家</h3>
+                <p>自动识别发票信息，智能生成报销清单，支持多格式导出</p>
+            </div>
+            
+            <!-- 此处可继续添加其他7个功能模块 -->
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer style="background: var(--dark); color: white; padding: 2rem; text-align: center;">
+  <a href="https://pan.quark.cn/s/89acf482fd64" >软件合集</a>
+                <a href="https://pan.quark.cn/s/daa0a68d49cf">游戏合集</a>
+        <p>官方提醒：从未开设任何付费获取邀请码的渠道，请勿上当受骗！</p>
+          </footer>
+</body>
+</html>
